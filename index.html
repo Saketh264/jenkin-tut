@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow | Student Task Manager</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+        <div class="logo">
+            <span>✓</span> TaskFlow
+        </div>
+
+        <div class="nav-right">
+            <span>Student Dashboard</span>
+            <div class="avatar">SV</div>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <section class="welcome">
+            <div>
+                <p class="small-text">GOOD MORNING 👋</p>
+                <h1>Stay on top of your tasks.</h1>
+                <p class="subtitle">
+                    Organize your academic work and keep track of your progress.
+                </p>
+            </div>
+
+            <button class="add-main-btn" onclick="openTaskForm()">
+                + Add Task
+            </button>
+        </section>
+
+
+        <!-- Statistics -->
+
+        <section class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon blue">📋</div>
+                <div>
+                    <p>Total Tasks</p>
+                    <h2 id="totalTasks">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✓</div>
+                <div>
+                    <p>Completed</p>
+                    <h2 id="completedTasks">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">◷</div>
+                <div>
+                    <p>Pending</p>
+                    <h2 id="pendingTasks">0</h2>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon red">!</div>
+                <div>
+                    <p>High Priority</p>
+                    <h2 id="highPriorityTasks">0</h2>
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Task section -->
+
+        <section class="task-section">
+
+            <div class="section-header">
+                <div>
+                    <h2>My Tasks</h2>
+                    <p>Manage your academic activities</p>
+                </div>
+
+                <div class="controls">
+
+                    <div class="search">
+                        🔍
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search tasks..."
+                            oninput="renderTasks()"
+                        >
+                    </div>
+
+                    <select id="filterSelect" onchange="renderTasks()">
+                        <option value="all">All Tasks</option>
+                        <option value="pending">Pending</option>
+                        <option value="completed">Completed</option>
+                        <option value="high">High Priority</option>
+                    </select>
+
+                </div>
+            </div>
+
+
+            <div id="taskList" class="task-list"></div>
+
+            <div id="emptyState" class="empty-state">
+                <div>📚</div>
+                <h3>No tasks found</h3>
+                <p>Add a task to get started.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- Add Task Modal -->
+
+    <div id="taskModal" class="modal">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <div>
+                    <h2>Add New Task</h2>
+                    <p>Create a task for your dashboard.</p>
+                </div>
+
+                <button class="close-btn" onclick="closeTaskForm()">×</button>
+            </div>
+
+
+            <form id="taskForm">
+
+                <label>Task Title</label>
+
+                <input
+                    type="text"
+                    id="taskTitle"
+                    placeholder="e.g. Complete DBMS assignment"
+                    required
+                >
+
+
+                <div class="form-row">
+
+                    <div>
+                        <label>Priority</label>
+
+                        <select id="taskPriority">
+                            <option value="low">Low</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="high">High</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Due Date</label>
+
+                        <input
+                            type="date"
+                            id="taskDate"
+                            required
+                        >
+                    </div>
+
+                </div>
+
+
+                <label>Category</label>
+
+                <select id="taskCategory">
+                    <option value="Academic">Academic</option>
+                    <option value="Project">Project</option>
+                    <option value="Placement">Placement</option>
+                    <option value="Personal">Personal</option>
+                </select>
+
+
+                <button type="submit" class="submit-btn">
+                    Add Task
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
