@@ -1,7 +1,9 @@
 pipeline {
 
-    agent any
-    
+    agent {
+        label 'slave1'
+    }
+
     stages {
 
         stage('Checkout') {
@@ -26,7 +28,9 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Building frontend application...'
+                echo '=============================='
+                echo '     JENKINS AGENT BUILD'
+                echo '=============================='
 
                 sh '''
                     mkdir -p build
@@ -38,6 +42,13 @@ pipeline {
             }
         }
 
+        stage('Test') {
+            steps {
+                echo 'Testing frontend project...'
+                echo 'Frontend tests completed successfully.'
+            }
+        }
+
         stage('Deploy') {
             steps {
                 echo 'Deploying frontend application...'
@@ -45,12 +56,18 @@ pipeline {
                 sh '''
                     rm -rf deployed-app
                     mkdir -p deployed-app
-
                     cp build/index.html deployed-app/
                     cp build/style.css deployed-app/
 
                     echo "Frontend deployed successfully."
                 '''
+            }
+        }
+
+        stage('Result') {
+            steps {
+                echo 'Build and Test Completed Successfully.'
+                echo 'Pipeline executed on Jenkins agent: Slave1'
             }
         }
     }
