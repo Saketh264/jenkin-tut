@@ -1,7 +1,7 @@
 pipeline {
 
     agent {
-        label 'frontend-agent'
+        label any
     }
 
     stages {
