@@ -18,7 +18,6 @@ pipeline {
                 sh '''
                     test -f index.html
                     test -f style.css
-                    test -f script.js
 
                     echo "All required frontend files are present."
                 '''
@@ -33,7 +32,6 @@ pipeline {
                     mkdir -p build
                     cp index.html build/
                     cp style.css build/
-                    cp script.js build/
 
                     echo "Frontend build completed."
                 '''
@@ -49,7 +47,7 @@ pipeline {
 
                     cp build/index.html /home/cselab8/jenkins-agent/deployed-app/
                     cp build/style.css /home/cselab8/jenkins-agent/deployed-app/
-                    cp build/script.js /home/cselab8/jenkins-agent/deployed-app/
+
 
                     echo "Frontend deployed successfully."
                 '''
