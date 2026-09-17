@@ -43,11 +43,11 @@ pipeline {
                 echo 'Deploying frontend application...'
 
                 sh '''
-                    mkdir -p /home/cselab8/jenkins-agent/deployed-app
+                    rm -rf deployed-app
+                    mkdir -p deployed-app
 
-                    cp build/index.html /home/cselab8/jenkins-agent/deployed-app/
-                    cp build/style.css /home/cselab8/jenkins-agent/deployed-app/
-
+                    cp build/index.html deployed-app/
+                    cp build/style.css deployed-app/
 
                     echo "Frontend deployed successfully."
                 '''
